@@ -24,7 +24,7 @@ The Kaldi installation requires a bit more memory than the 1GB of the Raspberry 
    ```sh
    $ sudo mkswap /swapfile
    ```
-    4. Enable the swap with the following command:  
+   4. Enable the swap with the following command:  
    ```sh
    $ sudo swapon /swapfile
    ```
