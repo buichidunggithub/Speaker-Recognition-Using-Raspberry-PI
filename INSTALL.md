@@ -1,7 +1,7 @@
 # Raspberry Pi 3 Kaldi install guide
 This is an instruction to compile the Kaldi ASR for this project. Credit to [saeidmokaram](https://github.com/saeidmokaram/Kaldi-on-RaspberryPi2) 
 
-## System requirements:s
+## System requirements:
 
 1. Raspberry Pi 3
 2. MicroSD card. 16GB is fine.
@@ -32,7 +32,7 @@ The Kaldi installation requires a bit more memory than the 1GB of the Raspberry 
    ```sh
    /swapfile swap swap defaults 0 0
    ```
-   5. To verify that the swap is active, use either the `swapon` or the `free` command as shown below;
+   5. To verify that the swap is active, use either the `swapon` or the `free` command as shown below:
    ```sh
    $ sudo swapon --show
    ```
