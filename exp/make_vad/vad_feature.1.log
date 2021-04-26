@@ -1,0 +1,8 @@
+# compute-vad --config=conf/vad.conf scp:input/feature/split1/1/feats.scp ark,scp:/home/nguyenduc/Documents/Speaker-Recognition-Using-Raspberry-PI/input/mfcc/vad_feature.1.ark,/home/nguyenduc/Documents/Speaker-Recognition-Using-Raspberry-PI/input/mfcc/vad_feature.1.scp 
+# Started at Tue Apr 27 02:17:51 +07 2021
+#
+compute-vad --config=conf/vad.conf scp:input/feature/split1/1/feats.scp ark,scp:/home/nguyenduc/Documents/Speaker-Recognition-Using-Raspberry-PI/input/mfcc/vad_feature.1.ark,/home/nguyenduc/Documents/Speaker-Recognition-Using-Raspberry-PI/input/mfcc/vad_feature.1.scp 
+LOG (compute-vad[5.5.883~1-3eea3]:main():compute-vad.cc:95) Applied energy based voice activity detection; processed 1 utterances successfully; 0 had empty features, and 0 were completely unvoiced.
+LOG (compute-vad[5.5.883~1-3eea3]:main():compute-vad.cc:99) Proportion of voiced frames was 0.998634 over 732 frames.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Tue Apr 27 02:17:51 +07 2021, elapsed time 0 seconds
