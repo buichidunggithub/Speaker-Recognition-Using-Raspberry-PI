@@ -1,3 +1,5 @@
 db
 input
-
+exp/make_mfcc
+exp/make_vad
+exp/scores
