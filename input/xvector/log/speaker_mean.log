@@ -1,8 +1,8 @@
 # ivector-mean ark:input/feature/spk2utt scp:input/xvector/xvector.scp ark,scp:input/xvector/spk_xvector.ark,input/xvector/spk_xvector.scp ark,t:input/xvector/num_utts.ark 
-# Started at Tue Apr 27 02:17:52 +07 2021
+# Started at Sun May  2 00:44:58 +07 2021
 #
 ivector-mean ark:input/feature/spk2utt scp:input/xvector/xvector.scp ark,scp:input/xvector/spk_xvector.ark,input/xvector/spk_xvector.scp ark,t:input/xvector/num_utts.ark 
 LOG (ivector-mean[5.5.883~1-3eea3]:main():ivector-mean.cc:134) Computed mean of 1 speakers (0 with no utterances), consisting of 1 utterances (0 absent from input).
 LOG (ivector-mean[5.5.883~1-3eea3]:main():ivector-mean.cc:145) Norm of mean of speakers is 51.1678, root-mean-square speaker-iVector length divided by sqrt(dim) is 2.26132
 # Accounting: time=0 threads=1
-# Ended (code 0) at Tue Apr 27 02:17:52 +07 2021, elapsed time 0 seconds
+# Ended (code 0) at Sun May  2 00:44:58 +07 2021, elapsed time 0 seconds
