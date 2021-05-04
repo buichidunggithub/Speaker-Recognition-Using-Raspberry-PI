@@ -6,7 +6,7 @@
 # author          :Bui Chi Dung - Chu Nguyen Duc
 # date            :
 # version         :0.1
-# usage           :python menu.py
+# usage           :python3 thesis.py
 # notes           :
 # python_version  :3.8.5
 # =======================================================================
@@ -20,6 +20,7 @@ menu_actions = {}
 
 # Path
 
+# Remember to change this path to your actual path where this file is located
 my_path = "/home/buichidung/Documents/Speaker-Recognition-Using-Raspberry-PI"
 
 
