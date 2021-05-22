@@ -75,8 +75,10 @@ def enrollment_menu(choice):
                 voice_id = ch_split[1]
                 if exc_extract == 'enr':
                     os.system('./extract.sh '+voice_id)
-            else:
-                menu_actions['1']()
+                    # Successful message
+                    # ...
+            # else:
+            menu_actions['1']()
         except KeyError:
             print("Invalid selection, please try again.\n")
             menu_actions['main_menu']()
@@ -141,6 +143,8 @@ def verify():
     choice = input(" >>  ")
     if choice.lower() == '9' or choice.lower() == '0':
         exec_menu(choice)
+    # else: 
+    #     verify_menu(choice)
     return
 
 
@@ -167,9 +171,8 @@ def delete_menu(choice):
                         print("Delete successfully! Please wait 2s to get back!")
                         os.system('sleep 2')
                         os.system('clear')
-                        menu_actions['2']()
-                    else:
-                        menu_actions['2']()
+                    # else:
+                    menu_actions['2']()
             else:
                 menu_actions['2']()
         except KeyError:
@@ -207,15 +210,18 @@ def format_menu(choice):
                     confirm = input(" >>  ")
                     cf = confirm.lower()
                     if cf == 'Y' or 'y':
+                        # Format db data enrollment
                         os.system('rm -rf ' + my_path + '/db')
                         os.system('mkdir db')
+                        # Format input data (to verify)
+                        os.system('rm -rf ' + my_path + '/input')
+                        os.system('mkdir input')
                         # output = subprocess.Popen(['echo', '$(find 001)'], stdout=subprocess.PIPE ).communicate()[0]
                         print("Format successfully! Please wait 2s to get back!")
                         os.system('sleep 2')
                         os.system('clear')
-                        menu_actions['5']()
-                    else:
-                        menu_actions['5']()
+                    # else:
+                    menu_actions['5']()
             else:
                 menu_actions['5']()
         except KeyError:
