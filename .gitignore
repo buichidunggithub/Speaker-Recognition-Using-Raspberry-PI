@@ -3,3 +3,15 @@ input
 exp/make_mfcc
 exp/make_vad
 exp/scores
+.idea/
+.vscode/
+results
+scores
+trials
+vivos
+data
+exp/scores_vivos_test
+exp/xvector_nnet_1a/xvectors_vivos_test/
+local/make_vivos.py
+run.sh
+mfcc/
