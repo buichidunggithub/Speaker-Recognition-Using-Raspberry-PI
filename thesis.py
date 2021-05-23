@@ -77,8 +77,8 @@ def enrollment_menu(choice):
                     os.system('./extract.sh '+voice_id)
                     # Successful message
                     # ...
-            # else:
-            menu_actions['1']()
+            else:
+                menu_actions['1']()
         except KeyError:
             print("Invalid selection, please try again.\n")
             menu_actions['main_menu']()

@@ -1,6 +1,7 @@
 import tkinter as tk
 from thesis import *
-
+from time import time
+import threading
 HEIGHT = 600
 WIDTH = 600
 
@@ -64,25 +65,104 @@ class EnrollFrame(tk.Frame):
     def __init__(self, root, controller):
         tk.Frame.__init__(self, root)
         self.controller = controller
-        record_btn = tk.Button(self, text='Start Recording')
-        back_button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartFrame"))
+        self.record_btn = tk.Button(self, text='Start Recording', command=self.record)
+        self.back_btn = tk.Button(self, text="Go to the start page",
+                           command=self.back)
         
-        record_btn.pack()
-        back_button.pack()
+        self.record_btn.pack()
+        self.back_btn.pack()
+        self.t = threading.Thread(target=self._record)
+        self.record_frame = tk.Frame(self)
+        
+        self.record_label = tk.Label(self.record_frame, text = "Recording....")
+        self.process_label = tk.Label(self.record_frame, text = "Processing....")
+        self.done_label = tk.Label(self.record_frame, text = "Done. Your ID is: " )
+        
+    def record(self):
+        
+        self.record_frame.pack()
+        self.record_label.pack()
+        self.back_btn.configure(state='disabled')
+        
+        
+        self.t.start()
+        
 
+    def back(self):
+        if self.t.is_alive():
+            self.t.join()
+        self.record_btn.configure(state='active')
+        self.record_label.pack_forget()
+        self.process_label.pack_forget()
+        self.done_label.pack_forget()        
+        self.controller.show_frame("StartFrame")
+    def _record(self):
+        self.record_btn.configure(state='disable')
+        self.back_btn.configure(state='disabled')
+        id = gen_id()
+        os.system('arecord -r 16000 -d 5 -f S16_LE db/{}/wav/{}.wav'.format(id, id))
+        self.process_label.pack()
+        os.system('./extract.sh ' + id)
+        self.back_btn.configure(state='active')
+        # self.record_label.pack_forget()
+        # self.process_label.pack_forget()
+
+        self.done_label.configure(text = "Done. Your ID is: " + id) 
+        self.done_label.pack()
 class VerifyFrame(tk.Frame):
 
     def __init__(self, root, controller):
         tk.Frame.__init__(self, root)
         self.controller = controller
-        # record_btn = tk.Button(self, text='Start Recording')
-        back_button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartFrame"))
+        self.entry = tk.Entry(self)
+        self.record_btn = tk.Button(self, text='Start Recording', command=self.record)
+        self.back_btn = tk.Button(self, text="Go to the start page",
+                           command=self.back)
         
-        # record_btn.pack()
-        back_button.pack()
+        self.record_btn.pack()
+        self.back_btn.pack()
+        self.entry.pack()
+        self.t = None
+        self.record_frame = tk.Frame(self)
+        
+        self.record_label = tk.Label(self.record_frame, text = "Recording....")
+        self.process_label = tk.Label(self.record_frame, text = "Processing....")
+        self.done_label = tk.Label(self.record_frame, text = "Done. You are: ")
+    def record(self):
+        
+        self.record_frame.pack()
+        self.record_label.pack()
+        self.back_btn.configure(state='disabled')
+        
+        self.t = threading.Thread(target=self._record)
+        self.t.start()
+        
 
+    def back(self):
+        if self.t.is_alive():
+            self.t.join()
+        self.record_btn.configure(state='active')
+        self.record_label.pack_forget()
+        self.process_label.pack_forget()
+        self.done_label.pack_forget()        
+        self.controller.show_frame("StartFrame")
+    def _record(self):
+        self.record_btn.configure(state='disable')
+        self.back_btn.configure(state='disabled')
+        id = self.get_id()
+        print(id)
+        os.system('arecord -r 16000 -d 5 -f S16_LE input/wav/input.wav')
+        self.process_label.pack()
+        os.system('./verify.sh ' + id)
+        self.back_btn.configure(state='active')
+        
+        f = open("results")
+        res = f.readlines()
+
+        self.done_label.configure(text = "Done. You are "+res[0])
+        self.done_label.pack()
+    def get_id(self):
+        return self.entry.get()
 class DeleteFrame(tk.Frame):
 
     def __init__(self, root, controller):
