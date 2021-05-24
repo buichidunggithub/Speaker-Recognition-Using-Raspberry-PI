@@ -14,14 +14,15 @@
 # Import the modules needed to run the script.
 import sys, os
 import subprocess
-
+import toml
 # Main definition - constants
 menu_actions = {}
 
 # Path
 
 # Remember to change this path to your actual path where this file is located
-my_path = "/home/buichidung/Documents/Speaker-Recognition-Using-Raspberry-PI"
+cfg = toml.load("config.toml")
+my_path = cfg["path"]
 
 
 # =======================
@@ -31,7 +32,6 @@ my_path = "/home/buichidung/Documents/Speaker-Recognition-Using-Raspberry-PI"
 # Main menu
 def main_menu():
     os.system('clear')
-
     print("Welcome,\n")
     print("Please choose the menu you want to start:")
     print("1. Enrollment")
@@ -77,8 +77,8 @@ def enrollment_menu(choice):
                     os.system('./extract.sh '+voice_id)
                     # Successful message
                     # ...
-            # else:
-            menu_actions['1']()
+            else:
+                menu_actions['1']()
         except KeyError:
             print("Invalid selection, please try again.\n")
             menu_actions['main_menu']()
@@ -87,14 +87,19 @@ def enrollment_menu(choice):
 # Menu enrollment
 def enrollment():
     print("Enrollment !\n")
-    print("Use command 'enr <id>' to enroll your voice id!\n")
+    # print("Use command 'enr <id>' to enroll your voice id!\n")
+    id = gen_id()
+    choice = 'enr {}'.format(id)
+    os.system('arecord -r 16000 -d 5 -f S16_LE db/{}/wav/{}.wav'.format(id, id))
+    enrollment_menu(choice)
+    os.system('clear')
     print("9. Back")
     print("0. Quit")
     choice = input(" >>  ")
     if choice.lower() == '9' or choice.lower() == '0':
         exec_menu(choice)
-    else:    
-        enrollment_menu(choice)
+    # else:    
+    #     enrollment_menu(choice)
     return
 
 
@@ -113,11 +118,10 @@ def verify_menu(choice):
                 voice_id_db = ch_split[1]
                 voice_id_input = ch_split[2]
                 if exc_verify == 'ver':
-                    os.system('./verify.sh ' + voice_id_db + ' '+ voice_id_input)
-                    # Successful message
-                    # ...
-            # else:
-            menu_actions['3']()
+                    # os.system('./verify.sh ' + voice_id_db + '  '+ voice_id_input)
+                    os.system('./verify.sh ' +  voice_id_input)
+            else:
+                menu_actions['3']()
         except KeyError:
             print("Invalid selection, please try again.\n")
             menu_actions['main_menu']()
@@ -126,14 +130,21 @@ def verify_menu(choice):
 # Menu vefify
 def verify():
     print("Verification !\n")
-    print("Use command 'ver <id_db> <id_input>' to verify your voice id!\n") 
+    choice = str(input("Your ID: "))
+    choice = 'ver input {}'.format(choice)
+    print(choice)
+    os.system('arecord -r 16000 -d 5 -f S16_LE input/wav/input.wav')
+    verify_menu(choice)
+    os.system('clear')
+    # print("Use command 'ver <id_db> <id_input>' to verify your voice id!\n")
+    print(get_result() + '\n')
     print("9. Back")
     print("0. Quit")
     choice = input(" >>  ")
     if choice.lower() == '9' or choice.lower() == '0':
         exec_menu(choice)
-    else: 
-        verify_menu(choice)
+    # else: 
+    #     verify_menu(choice)
     return
 
 
@@ -267,6 +278,24 @@ menu_actions = {
     '9': back,
     '0': exit,
 }
+
+def gen_id():
+    path = 'db'
+    num_spkr = len(os.listdir(path))
+    print(num_spkr)
+    id = num_spkr + 1
+    id = format(id, '03d')
+    dest_path = os.path.join(path, id, 'wav')    
+    if not os.path.exists(dest_path):
+        os.makedirs(dest_path)
+    
+    return id
+
+def get_result():
+    f = open('results', 'r')
+    res = f.readline()
+    return res
+
 
 # =======================
 #      MAIN PROGRAM
