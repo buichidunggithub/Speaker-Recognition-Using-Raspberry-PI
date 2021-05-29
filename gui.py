@@ -130,7 +130,7 @@ class VerifyFrame(tk.Frame):
         # self.t = threading.Thread(target=self._record)
         self.t = None
         self.record_frame = tk.Frame(self)
-            
+        self.record_frame.pack()
         self.record_label = tk.Label(self.record_frame, text = "Recording....")
         self.process_label = tk.Label(self.record_frame, text = "Processing....")
         self.done_label = tk.Label(self.record_frame, text = "Done. You are: ")
@@ -141,7 +141,7 @@ class VerifyFrame(tk.Frame):
             command = lambda x=button: self.select(x)
             
             if button == "BACK":
-                self.keyboards_button.append(tk.Button(self, text= button,width=6, bg="#3c4987", fg="#ffffff",
+                self.keyboards_button.append(tk.Button(self.record_frame, text= button,width=6, bg="#3c4987", fg="#ffffff",
                     activebackground = "#ffffff", activeforeground="#3c4987", 
                     # relief='raised', 
                     padx=1,
@@ -150,7 +150,7 @@ class VerifyFrame(tk.Frame):
                     command=command))
 
             else:
-                self.keyboards_button.append(tk.Button(self, text= button,width=4, bg="#3c4987", fg="#ffffff",
+                self.keyboards_button.append(tk.Button(self.record_frame, text= button,width=4, bg="#3c4987", fg="#ffffff",
                     activebackground = "#ffffff", activeforeground="#3c4987", 
                     # relief='raised', 
                     padx=1,
@@ -176,7 +176,6 @@ class VerifyFrame(tk.Frame):
 
     def record(self):
     
-        self.record_frame.pack()
         self.record_label.pack()
         self.back_btn.configure(state='disabled')
         for kb_btn in self.keyboards_button:
@@ -234,7 +233,7 @@ class DeleteFrame(tk.Frame):
         # self.t = threading.Thread(target=self._record)
         self.t = None
         self.delete_frame = tk.Frame(self)
-            
+        self.delete_frame.pack()
         # self.record_label = tk.Label(self.record_frame, text = "Recording....")
         self.process_label = tk.Label(self.delete_frame, text = "Processing....")
         self.done_label = tk.Label(self.delete_frame, text = "Done.")
@@ -245,7 +244,7 @@ class DeleteFrame(tk.Frame):
             command = lambda x=button: self.select(x)
             
             if button == "BACK":
-                self.keyboards_button.append(tk.Button(self, text= button,width=6, bg="#3c4987", fg="#ffffff",
+                self.keyboards_button.append(tk.Button(self.delete_frame, text= button,width=6, bg="#3c4987", fg="#ffffff",
                     activebackground = "#ffffff", activeforeground="#3c4987", 
                     # relief='raised', 
                     padx=1,
@@ -254,7 +253,7 @@ class DeleteFrame(tk.Frame):
                     command=command))
 
             else:
-                self.keyboards_button.append(tk.Button(self, text= button,width=4, bg="#3c4987", fg="#ffffff",
+                self.keyboards_button.append(tk.Button(self.delete_frame, text= button,width=4, bg="#3c4987", fg="#ffffff",
                     activebackground = "#ffffff", activeforeground="#3c4987", 
                     # relief='raised', 
                     padx=1,
@@ -277,6 +276,7 @@ class DeleteFrame(tk.Frame):
         for kb_btn in self.keyboards_button:
 
             kb_btn.pack(expand=True, side=tk.LEFT)
+            
     def delete(self):
         self.delete_frame.pack()    
         for kb_btn in self.keyboards_button:
@@ -326,7 +326,7 @@ class ConfigFrame(tk.Frame):
         # self.t = threading.Thread(target=self._record)
         self.t = None
         self.record_frame = tk.Frame(self)
-            
+        self.record_frame.pack()   
         self.record_label = tk.Label(self.record_frame, text = "Recording....")
         self.process_label = tk.Label(self.record_frame, text = "Processing....")
         self.done_label = tk.Label(self.record_frame, text = "Done.")
@@ -337,7 +337,7 @@ class ConfigFrame(tk.Frame):
             command = lambda x=button: self.select(x)
             
             if button == "BACK":
-                self.keyboards_button.append(tk.Button(self, text= button,width=6, bg="#3c4987", fg="#ffffff",
+                self.keyboards_button.append(tk.Button(self.record_frame, text= button,width=6, bg="#3c4987", fg="#ffffff",
                     activebackground = "#ffffff", activeforeground="#3c4987", 
                     # relief='raised', 
                     padx=1,
@@ -346,7 +346,7 @@ class ConfigFrame(tk.Frame):
                     command=command))
 
             else:
-                self.keyboards_button.append(tk.Button(self, text= button,width=4, bg="#3c4987", fg="#ffffff",
+                self.keyboards_button.append(tk.Button(self.record_frame, text= button,width=4, bg="#3c4987", fg="#ffffff",
                     activebackground = "#ffffff", activeforeground="#3c4987", 
                     # relief='raised', 
                     padx=1,
