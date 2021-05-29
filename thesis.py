@@ -281,10 +281,11 @@ menu_actions = {
 
 def gen_id():
     path = 'db'
-    num_spkr = len(os.listdir(path))
-    print(num_spkr)
-    id = num_spkr + 1
+    # num_spkr = len(os.listdir(path))
+    list_ids = sorted(os.listdir(path))
+    id = int(list_ids[-1])+1
     id = format(id, '03d')
+    print(id)
     dest_path = os.path.join(path, id, 'wav')    
     if not os.path.exists(dest_path):
         os.makedirs(dest_path)
