@@ -23,6 +23,9 @@ stage=0
 if [ $stage -le 0 ]; then
   # Create metadata for input
   python3 local/make_enroll.py input
+  #g++ local/make_enroll.cpp  
+  #./a.out input
+ 
 fi
 
 if [ $stage -le 1 ]; then
@@ -31,16 +34,16 @@ if [ $stage -le 1 ]; then
   vaddir=input/mfcc
   steps/make_mfcc.sh --write-utt2num-frames true --mfcc-config conf/mfcc.conf --nj $nj --cmd "$train_cmd" \
     input/feature exp/make_mfcc $mfccdir
-  utils/fix_data_dir.sh input/feature
+  # utils/fix_data_dir.sh input/feature
   sid/compute_vad_decision.sh --nj $nj --cmd "$train_cmd" \
     input/feature exp/make_vad $vaddir
-  utils/fix_data_dir.sh input/feature
+  # utils/fix_data_dir.sh input/feature
   
 fi
 
 # Extract x-vectors
 if [ $stage -le 2 ]; then
-  sid/nnet3/xvector/extract_xvectors.sh --cmd "$train_cmd --mem 4G" --nj $nj \
+  sid/nnet3/xvector/extract_xvectors.sh --cmd "$train_cmd --mem 1G" --nj $nj \
     $nnet_dir input/feature \
     input/xvector
 fi
