@@ -1,6 +1,7 @@
 import tkinter as tk
 from thesis import *
 from time import time
+from tkinter import messagebox
 import threading
 HEIGHT = 600
 WIDTH = 600
@@ -202,7 +203,6 @@ class VerifyFrame(tk.Frame):
         self.back_btn.configure(state='disabled')
         id = self.get_id()
         print(id)
-        #os.system('arecord -r 16000 -d 5 -f S16_LE input/wav/input.wav')
         os.system('arecord -D plughw:0,0 -r 16000 -d 5 -f S16_LE input/wav/input.wav')        
         self.process_label.pack()
         os.system('./verify.sh ' + id)
@@ -415,14 +415,59 @@ class FormatFrame(tk.Frame):
     def __init__(self, root, controller):
         tk.Frame.__init__(self, root)
         self.controller = controller
-        # record_btn = tk.Button(self, text='Start Recording')
-        back_button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartFrame"))
+        self.delete_btn = tk.Button(self, text='Start Deleting All Data', command=self.delete)
+        self.back_btn = tk.Button(self, text="Go to the start page", command=self.back)
         
-        # record_btn.pack()
-        back_button.pack()
+        self.delete_btn.pack()
+        self.back_btn.pack()
+        # self.entry.pack()
+        # self.t = threading.Thread(target=self._record)
+        self.t = None
+        self.delete_frame = tk.Frame(self)
+        self.delete_frame.pack()
 
+        self.process_label = tk.Label(self.delete_frame, text = "Processing....")
+        self.done_label = tk.Label(self.delete_frame, text = "Done.")
+        
 
+    def delete(self):
+        self.delete_frame.pack()    
+        
+        self.t = threading.Thread(target=self._delete_all)
+        self.t.start()
+   
+
+    def back(self):
+        if self.t != None and self.t.is_alive():
+            self.t.join()
+        self.delete_btn.configure(state='active')
+        # self.record_label.pack_forget()
+        self.process_label.pack_forget()
+        self.done_label.pack_forget()   
+        
+             
+        self.controller.show_frame("StartFrame")
+    def _delete_all(self):
+        self.delete_btn.configure(state='disable')
+        self.back_btn.configure(state='disabled')
+        self.confirm_box = tk.messagebox.askquestion ('Delete All','Are you sure you want to delete all data', icon = 'warning')
+        if self.confirm_box == 'yes':
+            os.system('rm -rf db')
+            os.system('mkdir db')
+            # Format input data (to verify)
+            os.system('rm -rf input')
+            os.system('mkdir input')
+
+        else:
+            # tk.messagebox.showinfo('Return','You will now return to the application screen')
+            pass
+    
+        self.process_label.pack()
+        self.back_btn.configure(state='active')
+
+        # self.done_label.configure(text = "Done. You are "+res[0])
+        self.done_label.pack()
+    
 def main():
     # root = tk.Tk()
     # root.geometry("600x600")

@@ -3,6 +3,9 @@
 . ./cmd.sh
 . ./path.sh
 set -e
+rm -f trials
+rm -f scores
+rm -f results
 
 
 nj=1

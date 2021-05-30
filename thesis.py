@@ -283,8 +283,12 @@ def gen_id():
     path = 'db'
     # num_spkr = len(os.listdir(path))
     list_ids = sorted(os.listdir(path))
-    id = int(list_ids[-1])+1
-    id = format(id, '03d')
+    id = ''
+    if list_ids == []:
+        id = '001'
+    else:
+        id = int(list_ids[-1])+1
+        id = format(id, '03d')
     print(id)
     dest_path = os.path.join(path, id, 'wav')    
     if not os.path.exists(dest_path):
