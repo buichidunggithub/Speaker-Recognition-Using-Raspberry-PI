@@ -72,7 +72,8 @@ class EnrollFrame(tk.Frame):
         
         self.record_btn.pack()
         self.back_btn.pack()
-        self.t = threading.Thread(target=self._record)
+        # self.t = threading.Thread(target=self._record)
+        self.t = None
         self.record_frame = tk.Frame(self)
         
         self.record_label = tk.Label(self.record_frame, text = "Recording....")
@@ -86,12 +87,12 @@ class EnrollFrame(tk.Frame):
         self.record_label.pack()
         self.back_btn.configure(state='disabled')
         
-        
+        self.t = threading.Thread(target=self._record)
         self.t.start()
         
 
     def back(self):
-        if self.t.is_alive():
+        if self.t != None and self.t.is_alive():
             self.t.join()
         self.record_btn.configure(state='active')
         self.record_label.pack_forget()
@@ -177,6 +178,9 @@ class VerifyFrame(tk.Frame):
 
     def record(self):
     
+        if not os.path.exists('input/wav'):
+            os.makedirs('input/wav')
+
         self.record_label.pack()
         self.back_btn.configure(state='disabled')
         for kb_btn in self.keyboards_button:
