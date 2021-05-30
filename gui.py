@@ -479,6 +479,7 @@ def main():
    
     # root.mainloop()
     app = App()
+    app.title('Speaker Verification')
     app.mainloop()
 if __name__ == "__main__":
     main()
