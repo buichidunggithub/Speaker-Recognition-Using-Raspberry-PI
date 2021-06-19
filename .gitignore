@@ -33,3 +33,4 @@ same_speaker_result_noise_voices
 same_speaker_result_small_voices
 small_voices_enroll/
 test.py
+path.sh
