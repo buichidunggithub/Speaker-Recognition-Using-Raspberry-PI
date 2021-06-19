@@ -40,16 +40,6 @@ For more details of this project, please see:
 * Our [complete report]()
 
 
-### Built With
-
-* [Raspberry Pi 3](https://https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
-* [Kaldi](https://kaldi-asr.org/)
-* [Python 3.6.9](https://www.python.org/downloads/release/python-369/)
-* [Tkinter](https://docs.python.org/3/library/tkinter.html)  
-
-
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
