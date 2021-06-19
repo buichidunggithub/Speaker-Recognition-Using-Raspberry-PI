@@ -16,7 +16,7 @@ if [ $# != 1 ]; then
 fi
 
 id=$1
-threshold=10
+threshold=12.5
 
 # Pretrained model
 nnet_dir=exp/xvector_nnet_1a

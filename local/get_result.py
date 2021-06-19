@@ -35,9 +35,9 @@ line = score_file.read().splitlines()[0]
 input_id, db_id, score = line.split(' ')
 score = float(score)
 if score > threshold:
-    result_file.write("True")
+    result_file.write("Accepted")
 else:
-    result_file.write("False")
+    result_file.write("Rejected")
 
 score_file.close()
 result_file.close()
