@@ -1,0 +1,8 @@
+# ivector-mean ark:data/vivos_test/spk2utt scp:exp/xvector_nnet_1a/xvectors_vivos_test/xvector.scp ark,scp:exp/xvector_nnet_1a/xvectors_vivos_test/spk_xvector.ark,exp/xvector_nnet_1a/xvectors_vivos_test/spk_xvector.scp ark,t:exp/xvector_nnet_1a/xvectors_vivos_test/num_utts.ark 
+# Started at Mon Jun  7 21:01:38 +07 2021
+#
+ivector-mean ark:data/vivos_test/spk2utt scp:exp/xvector_nnet_1a/xvectors_vivos_test/xvector.scp ark,scp:exp/xvector_nnet_1a/xvectors_vivos_test/spk_xvector.ark,exp/xvector_nnet_1a/xvectors_vivos_test/spk_xvector.scp ark,t:exp/xvector_nnet_1a/xvectors_vivos_test/num_utts.ark 
+LOG (ivector-mean[5.5.883~1-3eea3]:main():ivector-mean.cc:134) Computed mean of 19 speakers (0 with no utterances), consisting of 760 utterances (0 absent from input).
+LOG (ivector-mean[5.5.883~1-3eea3]:main():ivector-mean.cc:145) Norm of mean of speakers is 31.9089, root-mean-square speaker-iVector length divided by sqrt(dim) is 2.08501
+# Accounting: time=0 threads=1
+# Ended (code 0) at Mon Jun  7 21:01:38 +07 2021, elapsed time 0 seconds
