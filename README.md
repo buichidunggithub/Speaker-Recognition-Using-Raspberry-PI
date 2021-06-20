@@ -55,7 +55,7 @@ For more details of this project, please see:
 
 ### Installation
 
-Follow our detailed instructions at [INSTALLATON.md](https://github.com/buichidunggithub/Speaker-Recognition-Using-Raspberry-PI/blob/main/INSTALL.md)
+Follow our detailed instructions at [INSTALL.md](https://github.com/buichidunggithub/Speaker-Recognition-Using-Raspberry-PI/blob/main/INSTALL.md)
 
 
 
@@ -70,7 +70,7 @@ Follow our detailed instructions at [INSTALLATON.md](https://github.com/buichidu
 ## Contact
 
 Chu Nguyên Đức - nguyenducchu1999@gmail.com  
-Bùi Chí Dũng - 
+Bùi Chí Dũng - chidungface@gmail.com
 
 
 <!-- ACKNOWLEDGEMENTS -->
