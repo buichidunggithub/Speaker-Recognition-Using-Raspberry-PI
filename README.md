@@ -70,7 +70,7 @@ Follow our detailed instructions at [INSTALL.md](https://github.com/buichidunggi
 ## Contact
 
 Chu Nguyên Đức - nguyenducchu1999@gmail.com  
-Bùi Chí Dũng - 
+Bùi Chí Dũng - chidungface@gmail.com
 
 
 <!-- ACKNOWLEDGEMENTS -->
